@@ -32,7 +32,7 @@ $user_avatar = 'img/user.jpg';
               <img src="img/user.jpg" width="40" height="40" alt="Пользователь">
           </div>
           <div class="user-menu__logged">
-              <p><?php print($is_auth); ?></p>
+              <p><?php print($user_name); ?></p>
           </div>
           
           <?php else: ?>
