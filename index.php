@@ -6,45 +6,45 @@ $user_avatar = 'img/user.jpg';
 $lots_categories = ['Доски и лыжи', 'Крепления', 'Ботинки', 'Одежда', 'Инструменты', 'Разное'];
 $ads = [
   'lot_01' => [ 
-              'category' => 'Доски и лыжи',
-                  'name' => '2014 Rossignol District Snowboard',
-                 'price' => 10999,
-              'img_link' => 'img/lot-1.jpg'
+              0 => 'Доски и лыжи',
+              1 => '2014 Rossignol District Snowboard',
+              2 => 10999,
+              3 => 'img/lot-1.jpg'
   ],
   
   'lot_02' => [ 
-              'category' => 'Доски и лыжи',
-                  'name' => 'DC Ply Mens 2016/2017 Snowboard',
-                 'price' => 159999,
-              'img_link' => 'img/lot-2.jpg'
+              0 => 'Доски и лыжи',
+              1 => 'DC Ply Mens 2016/2017 Snowboard',
+              2 => 159999,
+              3 => 'img/lot-2.jpg'
   ],
   
   'lot_03' => [ 
-              'category' => 'Крепления',
-                  'name' => 'Крепления Union Contact Pro 2015 года размер L/XL',
-                 'price' => 8000,
-              'img_link' => 'img/lot-3.jpg'
+              0 => 'Крепления',
+              1 => 'Крепления Union Contact Pro 2015 года размер L/XL',
+              2 => 8000,
+              3 => 'img/lot-3.jpg'
   ],
   
   'lot_04' => [ 
-              'category' => 'Ботинки',
-                  'name' => 'Ботинки для сноуборда DC Mutiny Charocal',
-                 'price' => 10999,
-              'img_link' => 'img/lot-4.jpg'
+              0 => 'Ботинки',
+              1 => 'Ботинки для сноуборда DC Mutiny Charocal',
+              2 => 10999,
+              3 => 'img/lot-4.jpg'
   ],
   
   'lot_05' => [ 
-              'category' => 'Одежда',
-                  'name' => 'Куртка для сноуборда DC Mutiny Charocal',
-                 'price' => 7500,
-              'img_link' => 'img/lot-5.jpg'
+              0 => 'Одежда',
+              1 => 'Куртка для сноуборда DC Mutiny Charocal',
+              2 => 7500,
+              3 => 'img/lot-5.jpg'
   ],
   
   'lot_06' => [ 
-              'category' => 'Разное',
-                  'name' => 'Маска Oakley Canopy',
-                 'price' => 5400,
-              'img_link' => 'img/lot-6.jpg'
+              0 => 'Разное',
+              1 => 'Маска Oakley Canopy',
+              2 => 5400,
+              3 => 'img/lot-6.jpg'
   ]
 ];
 ?>
@@ -115,15 +115,15 @@ $ads = [
             <?php foreach ($ads as $key => $val): ?>
             <li class="lots__item lot">
                 <div class="lot__image">
-                    <img src="<?=$val['img_link']; ?>" width="350" height="260" alt="<?=$val['name']; ?>">
+                    <img src="<?=$val[3]; ?>" width="350" height="260" alt="<?=$val[1]; ?>">
                 </div>
                 <div class="lot__info">
-                    <span class="lot__category"><?=$val['category']; ?></span>
-                    <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?=$val['name']; ?></a></h3>
+                    <span class="lot__category"><?=$val[0]; ?></span>
+                    <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?=$val[1]; ?></a></h3>
                     <div class="lot__state">
                         <div class="lot__rate">
-                            <span class="lot__amount"><?=$val['price']; ?></span>
-                            <span class="lot__cost"><?=$val['price']; ?><b class="rub">р</b></span>
+                            <span class="lot__amount"><?=$val[2]; ?></span>
+                            <span class="lot__cost"><?=$val[2]; ?><b class="rub">р</b></span>
                         </div>
                         <div class="lot__timer timer">
 
