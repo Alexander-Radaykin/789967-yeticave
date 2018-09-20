@@ -50,18 +50,8 @@ $ads = [
   ]
 ];
 
-function cost_format(int $cost) {
-  $num = ceil($cost);
-  
-  if ($cost >= 1000) {
-    $cost = number_format ($num, 0, ' ', ' ');
-  }
-  else {
-    $cost = $num;
-  }
-  
-  $cost .= ' ₽';
-    
-  return $cost;
-}
+$page_content = include_template('index.php', ['lots_categories' => $lots_categories, 'ads' => $ads]);
+$layout_content = include_template('layout.php', ['content' => $page_content, 'lots_categories' => $lots_categories, 'is_auth' => $is_auth, 'title' => 'YetiCave', 'user_name' => $user_name, 'user_avatar' => $user_avatar]);
+
+print($layout_content);
 ?>
