@@ -29,4 +29,3 @@ function cost_format(int $cost) {
     
   return $cost;
 }
-?>
