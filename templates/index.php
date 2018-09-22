@@ -28,7 +28,7 @@
                         <span class="lot__cost"><?=cost_format (htmlspecialchars($val['price'])); ?></span>
                     </div>
                     <div class="lot__timer timer">
-
+                    <?=$time_remaining;?>
                     </div>
                 </div>
             </div>
