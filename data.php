@@ -8,12 +8,12 @@ $bets = [
 ];
 
 $lots_categories = [
-  'promo__item--boards' => 'Доски и лыжи',
-  'promo__item--attachment' => 'Крепления',
-  'promo__item--boots' => 'Ботинки',
-  'promo__item--clothing' => 'Одежда',
-  'promo__item--tools' => 'Инструменты',
-  'promo__item--other' => 'Разное'
+  'boards' => 'Доски и лыжи',
+  'attachment' => 'Крепления',
+  'boots' => 'Ботинки',
+  'clothing' => 'Одежда',
+  'tools' => 'Инструменты',
+  'other' => 'Разное'
 ];
 
 $ads = [
