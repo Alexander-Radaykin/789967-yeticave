@@ -2,6 +2,8 @@ CREATE DATABASE yeticave
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci;
   
+USE yeticave;
+  
 CREATE TABLE users(
   id INT AUTO_INCREMENT PRIMARY KEY,
   reg_date DATETIME,
@@ -9,6 +11,7 @@ CREATE TABLE users(
   name CHAR,
   password CHAR(64),
   avatar_link CHAR,
+  contacts TEXT,
   added_lots_id INT,
   bets_id INT
 );
@@ -34,8 +37,13 @@ CREATE TABLE lots(
 
 CREATE TABLE bets(
   id INT AUTO_INCREMENT PRIMARY KEY,
-  adds_date DATETIME,
+  bet_date DATETIME,
   cost INT,
   user_id INT,
   lot_id INT
 );
+
+CREATE UNIQUE INDEX email ON users(email);
+CREATE UNIQUE INDEX avatar_link ON users(avatar_link);
+CREATE UNIQUE INDEX name ON categories(name);
+CREATE UNIQUE INDEX img_link ON lots(img_link);
