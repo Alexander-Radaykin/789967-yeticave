@@ -13,3 +13,8 @@ CREATE TABLE users(
   bets_id INT
 );
 
+CREATE TABLE categories(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name CHAR(20)
+);
+
