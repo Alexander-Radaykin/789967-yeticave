@@ -8,7 +8,7 @@ CREATE TABLE users(
   id INT AUTO_INCREMENT PRIMARY KEY,
   reg_date DATETIME,
   email CHAR(60),
-  name CHAR,
+  name CHAR(80),
   password CHAR(64),
   avatar_link CHAR,
   contacts TEXT,
@@ -44,10 +44,8 @@ CREATE TABLE bets(
 );
 
 CREATE UNIQUE INDEX email ON users(email);
-CREATE UNIQUE INDEX avatar_link ON users(avatar_link);
 CREATE UNIQUE INDEX name ON categories(name);
 CREATE UNIQUE INDEX img_link ON lots(img_link);
-CREATE INDEX reg_date ON users(reg_date);
 CREATE INDEX name ON users(name);
 CREATE INDEX added_lots_id ON users(added_lots_id);
 CREATE INDEX create_date ON lots(create_date);
