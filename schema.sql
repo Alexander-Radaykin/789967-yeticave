@@ -18,13 +18,13 @@ CREATE TABLE users(
 
 CREATE TABLE categories(
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name CHAR(20)
+  name CHAR(40)
 );
 
 CREATE TABLE lots(
   id INT AUTO_INCREMENT PRIMARY KEY,
   create_date DATETIME,
-  title CHAR(100),
+  title CHAR,
   description TEXT,
   img_link CHAR,
   starting_price INT,
@@ -47,3 +47,16 @@ CREATE UNIQUE INDEX email ON users(email);
 CREATE UNIQUE INDEX avatar_link ON users(avatar_link);
 CREATE UNIQUE INDEX name ON categories(name);
 CREATE UNIQUE INDEX img_link ON lots(img_link);
+CREATE INDEX reg_date ON users(reg_date);
+CREATE INDEX name ON users(name);
+CREATE INDEX added_lots_id ON users(added_lots_id);
+CREATE INDEX create_date ON lots(create_date);
+CREATE INDEX title ON lots(title);
+CREATE INDEX starting_price ON lots(starting_price);
+CREATE INDEX end_date ON lots(end_date);
+CREATE INDEX author_id ON lots(author_id);
+CREATE INDEX winner_id ON lots(winner_id);
+CREATE INDEX category_id ON lots(category_id);
+CREATE INDEX bet_date ON bets(bet_date);
+CREATE INDEX user_id ON bets(user_id);
+CREATE INDEX lot_id ON bets(lot_id);
