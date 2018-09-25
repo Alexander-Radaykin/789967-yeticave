@@ -32,3 +32,10 @@ CREATE TABLE lots(
   category_id INT
 );
 
+CREATE TABLE bets(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  adds_date DATETIME,
+  cost INT,
+  user_id INT,
+  lot_id INT
+);
