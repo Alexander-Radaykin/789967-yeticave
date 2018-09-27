@@ -12,8 +12,6 @@ CREATE TABLE users(
   password CHAR(64),
   avatar_link CHAR,
   contacts TEXT,
-  added_lots_id INT,
-  bets_id INT
 );
 
 CREATE TABLE categories(
@@ -47,7 +45,6 @@ CREATE UNIQUE INDEX email ON users(email);
 CREATE UNIQUE INDEX name ON categories(name);
 CREATE UNIQUE INDEX img_link ON lots(img_link);
 CREATE INDEX name ON users(name);
-CREATE INDEX added_lots_id ON users(added_lots_id);
 CREATE INDEX create_date ON lots(create_date);
 CREATE INDEX title ON lots(title);
 CREATE INDEX starting_price ON lots(starting_price);
