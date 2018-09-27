@@ -45,3 +45,7 @@ SELECT l.id, l.create_date 'Дата создания', l.title 'Названи�
 FROM lots l
 JOIN categories c ON l.category_id = c.id
 WHERE l.id = 3;
+
+/* Запрос на изменение названия лота по его id */
+UPDATE lots SET title = '2015 Rossignol District Snowboard'
+WHERE id = 1;
