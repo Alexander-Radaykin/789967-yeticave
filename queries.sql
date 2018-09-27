@@ -49,3 +49,9 @@ WHERE l.id = 3;
 /* Запрос на изменение названия лота по его id */
 UPDATE lots SET title = '2015 Rossignol District Snowboard'
 WHERE id = 1;
+
+/* Запрос на получение списка самых свежих ставок для лота по его id */
+SELECT * FROM bets
+WHERE lot_id = 3
+ORDER BY id DESC
+LIMIT 3;
