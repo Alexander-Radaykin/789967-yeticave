@@ -36,4 +36,6 @@ SELECT l.title 'Название', l.starting_price 'Стартовая цена
 FROM lots l
 LEFT JOIN bets b ON l.id = b.lot_id
 JOIN categories c ON l.category_id = c.id
-WHERE l.end_date > NOW() AND l.create_date > '2018-09-24 00:00:00';
+WHERE l.end_date > NOW() AND l.create_date > '2018-09-24 00:00:00'
+GROUP BY l.title, l.starting_price, l.img_link, b.cost, c.name
+ORDER BY l.title ASC;
