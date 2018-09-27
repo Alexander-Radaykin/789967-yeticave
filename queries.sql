@@ -39,3 +39,9 @@ JOIN categories c ON l.category_id = c.id
 WHERE l.end_date > NOW() AND l.create_date > '2018-09-24 00:00:00'
 GROUP BY l.title, l.starting_price, l.img_link, b.cost, c.name
 ORDER BY l.title ASC;
+
+/* Запрос на получение лота и названия его категории по id лота */
+SELECT l.id, l.create_date 'Дата создания', l.title 'Название', l.description 'Описание', l.starting_price 'Стартовая цена', l.img_link 'Ссылка на изображение', l.end_date 'Дата окончания', l. bet_step 'Шаг ставки', l.author_id, l.winner_id, l.category_id, c.name 'Категория'
+FROM lots l
+JOIN categories c ON l.category_id = c.id
+WHERE l.id = 3;
