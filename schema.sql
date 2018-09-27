@@ -10,8 +10,8 @@ CREATE TABLE users(
   email CHAR(60),
   name CHAR(80),
   password CHAR(64),
-  avatar_link CHAR,
-  contacts TEXT,
+  avatar_link VARCHAR,
+  contacts TEXT
 );
 
 CREATE TABLE categories(
@@ -22,9 +22,9 @@ CREATE TABLE categories(
 CREATE TABLE lots(
   id INT AUTO_INCREMENT PRIMARY KEY,
   create_date DATETIME,
-  title CHAR,
+  title VARCHAR,
   description TEXT,
-  img_link CHAR,
+  img_link VARCHAR,
   starting_price INT,
   end_date DATETIME,
   bet_step INT,
