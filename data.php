@@ -7,14 +7,7 @@ $bets = [
     ['name' => 'Семён', 'price' => 10000, 'ts' => strtotime('last week')]
 ];
 
-$lots_categories = [
-  'boards' => 'Доски и лыжи',
-  'attachment' => 'Крепления',
-  'boots' => 'Ботинки',
-  'clothing' => 'Одежда',
-  'tools' => 'Инструменты',
-  'other' => 'Разное'
-];
+$classes = ['boards', 'attachment', 'boots', 'clothing', 'tools', 'other'];
 
 $ads = [
   [ 
