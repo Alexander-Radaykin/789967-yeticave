@@ -27,8 +27,9 @@ $res_get_cat = mysqli_query($con, $sql_get_cat);
   }
 
 $lots = mysqli_fetch_all($res_get_lots, MYSQLI_ASSOC);
-$categories = mysqli_fetch_all($res_get_cat, MYSQLI_ASSOC);
-  
+$cat = mysqli_fetch_all($res_get_cat, MYSQLI_ASSOC);
+$categories = array_combine($classes, $cat);
+
 $title = 'Главная';
 $is_auth = rand(0, 1);
 
@@ -42,7 +43,7 @@ $hours = floor($qt_sec_to_midnight / 3600);
 $minutes = floor(($qt_sec_to_midnight % 3600) / 60);
 $time_remaining = sprintf("%02d", $hours) . ' : ' . sprintf("%02d", $minutes);
 
-$content = include_template('index.php', compact('lots_categories', 'lots', 'time_remaining'));
+$content = include_template('index.php', compact('categories', 'lots', 'time_remaining'));
 $layout_content = include_template('layout.php', compact('content', 'categories', 'is_auth', 'title', 'user_name', 'user_avatar'));
 
 print($layout_content);
