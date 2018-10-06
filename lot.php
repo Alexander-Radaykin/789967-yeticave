@@ -2,6 +2,10 @@
 date_default_timezone_set("Europe/Moscow");
 require_once('functions.php');
 
+if(isset($_GET['lot_id'])) {
+  $lot_id = $_GET['lot_id'];
+}
+
 $con = mysqli_connect('localhost', 'root', '', 'yeticave');
   if(!$con) {
     print("Ошибка подключения: " . mysqli_connect_error());
@@ -9,16 +13,15 @@ $con = mysqli_connect('localhost', 'root', '', 'yeticave');
 mysqli_set_charset($con, "utf8");
 
 $sql_get_cat = "SELECT name FROM categories";
-$sql_get_lot = "SELECT l.id, l.create_date, l.title, l.description, l.img_link, l.starting_price, l.end_date, l.bet_step, l.author_id, l.winner_id, l.category_id, c.name 'category', b.bet_date, b.cost, u.name
+$sql_get_lot = "SELECT l.id, l.create_date, l.title, l.description, l.img_link, l.starting_price, l.end_date, l.bet_step, l.author_id, l.winner_id, l.category_id, c.name 'category'
 FROM lots l
 JOIN categories c ON l.category_id = c.id
-LEFT JOIN bets b ON b.tot_id = l.id
-JOIN users u ON b.user_id = u.id
-WHERE l.id = <?=lot_id;?>";
+WHERE l.id = '.$lot_id.'";
 $sql_get_bets = "SELECT COUNT(b.id) 'total_count', b.bet_date, MAX(b.cost) 'cur_price', u.name
 FROM bets b
 LEFT JOIN users u ON b.user_id = u.id
-WHERE b.lot_id = <?=lot_id;?>";
+WHERE b.lot_id = '.$lot_id.'
+GROUP BY b.bet_date, u.name ORDER BY total_count ASC";
 
 $res_get_cat = mysqli_query($con, $sql_get_cat);
   if(!$res_get_cat) {
@@ -40,7 +43,7 @@ $categories = mysqli_fetch_all($res_get_cat, MYSQLI_ASSOC);
 $lot = mysqli_fetch_all($res_get_lot, MYSQLI_ASSOC);
 $bets = mysqli_fetch_all($res_get_bets, MYSQLI_ASSOC);
 
-$lot_main_content = include_template('lot_main.php', compact('categories', 'lot', 'bets', 'time_remaining'));
-$lot_lay_content = include_template('lot_layout.php', compact('categories'));
+$lot_main_content = include_template('lot_main.php', compact('categories', 'lot', 'bets'));
+$lot_lay_content = include_template('lot_layout.php', compact('lot_main_content', 'categories'));
     
 print($lot_lay_content);
