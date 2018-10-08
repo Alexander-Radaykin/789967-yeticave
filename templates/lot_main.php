@@ -8,15 +8,16 @@
       </ul>
     </nav>
     <section class="lot-item container">
-      <h2><?=$lot['title'];?></h2>
+      <h2><?=$lot[0]['title'];?></h2>
       <div class="lot-item__content">
         <div class="lot-item__left">
           <div class="lot-item__image">
-            <img src="img/lot-image.jpg" width="730" height="548" alt="Сноуборд">
+            <img src="../<?=$lot[0]['img_link'];?>" width="730" height="548" alt="Сноуборд">
           </div>
-          <p class="lot-item__category">Категория: <span><?=$lot['category'];?></span></p>
-          <p class="lot-item__description"><?=$lot['description'];?></p>
+          <p class="lot-item__category">Категория: <span><?=$lot[0]['category'];?></span></p>
+          <p class="lot-item__description"><?=$lot[0]['description'];?></p>
         </div>
+<!--  
         <div class="lot-item__right">
           <div class="lot-item__state">
             <div class="lot-item__timer timer">
@@ -95,5 +96,6 @@
             </table>
           </div>
         </div>
+-->
       </div>
     </section>

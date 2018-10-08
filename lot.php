@@ -5,6 +5,10 @@ require_once('functions.php');
 if(isset($_GET['lot_id'])) {
   $lot_id = $_GET['lot_id'];
 }
+else {
+  http_response_code(404);
+  exit;
+}
 
 $con = mysqli_connect('localhost', 'root', '', 'yeticave');
   if(!$con) {
@@ -16,12 +20,12 @@ $sql_get_cat = "SELECT name FROM categories";
 $sql_get_lot = "SELECT l.id, l.create_date, l.title, l.description, l.img_link, l.starting_price, l.end_date, l.bet_step, l.author_id, l.winner_id, l.category_id, c.name 'category'
 FROM lots l
 JOIN categories c ON l.category_id = c.id
-WHERE l.id = '.$lot_id.'";
-$sql_get_bets = "SELECT COUNT(b.id) 'total_count', b.bet_date, MAX(b.cost) 'cur_price', u.name
+WHERE l.id = '$lot_id'";
+$sql_get_bets = "SELECT COUNT(b.id) 'total_count', b.bet_date, MAX(b.cost) 'cur_price', b.cost, b.lot_id, u.name
 FROM bets b
 LEFT JOIN users u ON b.user_id = u.id
-WHERE b.lot_id = '.$lot_id.'
-GROUP BY b.bet_date, u.name ORDER BY total_count ASC";
+WHERE b.lot_id = '$lot_id'
+GROUP BY b.bet_date, b.cost, b.lot_id, u.name ORDER BY total_count ASC";
 
 $res_get_cat = mysqli_query($con, $sql_get_cat);
   if(!$res_get_cat) {
@@ -41,9 +45,14 @@ $res_get_bets = mysqli_query($con, $sql_get_bets);
 
 $categories = mysqli_fetch_all($res_get_cat, MYSQLI_ASSOC);
 $lot = mysqli_fetch_all($res_get_lot, MYSQLI_ASSOC);
+if (empty($lot)) {
+  http_response_code(404);
+  exit;
+}
 $bets = mysqli_fetch_all($res_get_bets, MYSQLI_ASSOC);
 
+
 $lot_main_content = include_template('lot_main.php', compact('categories', 'lot', 'bets'));
-$lot_lay_content = include_template('lot_layout.php', compact('lot_main_content', 'categories'));
+$lot_lay_content = include_template('lot_layout.php', compact('lot_main_content', 'categories', 'lot'));
     
 print($lot_lay_content);
