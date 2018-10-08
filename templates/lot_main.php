@@ -4,7 +4,7 @@
         <li class="nav__item">
         <a href="pages/all-lots.html"><?=$val['name'];?></a>
         </li>
-      <?php endforeach;?>
+        <?php endforeach;?>
       </ul>
     </nav>
     <section class="lot-item container">

@@ -1,5 +1,14 @@
-<form class="form form--add-lot container form--invalid" action="https://echo.htmlacademy.ru" method="post"> <!-- form--invalid -->
-    <h2>Добавление лота</h2>
+<nav class="nav">
+      <ul class="nav__list container">
+        <?php foreach($categories as $key => $val):?>
+        <li class="nav__item">
+        <a href="pages/all-lots.html"><?=$val['name'];?></a>
+        </li>
+        <?php endforeach;?>
+      </ul>
+    </nav>
+    <form class="form form--add-lot container form--invalid" action="https://echo.htmlacademy.ru" method="post"> <!-- form--invalid -->
+      <h2>Добавление лота</h2>
       <div class="form__container-two">
         <div class="form__item form__item--invalid"> <!-- form__item--invalid -->
           <label for="lot-name">Наименование</label>
@@ -10,12 +19,9 @@
           <label for="category">Категория</label>
           <select id="category" name="category" required>
             <option>Выберите категорию</option>
-            <option>Доски и лыжи</option>
-            <option>Крепления</option>
-            <option>Ботинки</option>
-            <option>Одежда</option>
-            <option>Инструменты</option>
-            <option>Разное</option>
+            <?php foreach($categories as $key => $val):?>
+            <option><?=$val['name'];?></option>
+            <?php endforeach;?>
           </select>
           <span class="form__error">Выберите категорию</span>
         </div>
@@ -59,4 +65,4 @@
       </div>
       <span class="form__error form__error--bottom">Пожалуйста, исправьте ошибки в форме.</span>
       <button type="submit" class="button">Добавить лот</button>
-</form>
+    </form>
