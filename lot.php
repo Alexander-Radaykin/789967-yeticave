@@ -6,6 +6,7 @@ if(isset($_GET['lot_id'])) {
   $lot_id = intval($_GET['lot_id']);
 }
 else {
+  http_response_code(404);
   require_once('templates/error_404.php');
   exit;
 }
@@ -46,6 +47,7 @@ $res_get_bets = mysqli_query($con, $sql_get_bets);
 $categories = mysqli_fetch_all($res_get_cat, MYSQLI_ASSOC);
 $lot = mysqli_fetch_assoc($res_get_lot);
 if (empty($lot)) {
+  http_response_code(404);
   require_once('templates/error_404.php');
   exit;
 }
