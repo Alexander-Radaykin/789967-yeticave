@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     	print ($add_lay_content);
   	}
 	else {
-    	$stmt = db_get_prepare_stmt($con, $sql_add_lot, [$lot['title'], $lot['description'], $lot['path'], $lot['starting_price'], $lot['end_date'], $lot['end_date'], $lot['bet_step'], $lot['category']]);
+    	$stmt = db_get_prepare_stmt($con, $sql_add_lot, [$lot['lot-name'], $lot['message'], $lot['path'], $lot['lot-rate'], $lot['lot-date'], $lot['lot-step'], $lot['category']]);
     	$res_add_lot = mysqli_stmt_execute($stmt);
     
     	if ($res_add_lot) {
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   	}
 }
 else {
-  	$add_main_content = include_template('add_main.php', compact('categories'));
+  	$add_main_content = include_template('add_main.php', compact('categories', 'errors', 'lot'));
   	$add_lay_content = include_template('add_layout.php', compact('add_main_content', 'categories'));
     
   	print($add_lay_content);
