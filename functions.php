@@ -17,18 +17,18 @@ return $result;
 }
 
 function cost_format(int $cost) {
-  $num = ceil($cost);
+	$num = ceil($cost);
   
-  if ($cost >= 1000) {
-    $cost = number_format ($num, 0, ' ', ' ');
-  }
-  else {
-    $cost = $num;
-  }
+	if ($cost >= 1000) {
+		$cost = number_format ($num, 0, ' ', ' ');
+  	}
+  	else {
+    	$cost = $num;
+  	}
   
-  $cost .= ' ₽';
+  	$cost .= ' ₽';
     
-  return $cost;
+  	return $cost;
 }
 
 function db_get_prepare_stmt($link, $sql, $data = []) {
@@ -64,4 +64,13 @@ function db_get_prepare_stmt($link, $sql, $data = []) {
     }
 
     return $stmt;
+}
+
+function edit_class_value_alert($errors, $lot, $field = '') {
+	$res = [];
+	$res['class_name'] = isset($errors[$field]) ? "form__item--invalid" : "";
+	$res['value'] = isset($lot[$field]) ? $lot[$field] : "";
+	$res['alert'] = isset($errors[$field]) ? $errors[$field] : "";
+  
+	return $res;
 }

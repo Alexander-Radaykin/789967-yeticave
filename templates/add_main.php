@@ -7,39 +7,33 @@
         <?php endforeach;?>
       </ul>
     </nav>
-      <?php $form_class = !empty($errors) ? "form--invalid" : "";?>
+    <?php $form_class = !empty($errors) ? "form--invalid" : "";?>
     <form class="form form--add-lot container <?=$form_class;?>" action="add.php" method="post" enctype="multipart/form-data">
       <h2>Добавление лота</h2>
       <div class="form__container-two">
-        <?php $class_name = isset($errors['lot-name']) ? "form__item--invalid" : "";
-        $value = isset($lot['lot-name']) ? $lot['lot-name'] : "";
-        $alert = isset($errors['lot-name']) ? $errors['lot-name'] : "";?>
-        <div class="form__item <?=$class_name;?>">
+        <?php $cva = edit_class_value_alert($errors, $lot, 'lot-name');?>
+        <div class="form__item <?=$cva['class_name'];?>">
           <label for="lot-name">Наименование</label>
-          <input id="lot-name" type="text" name="lot-name" placeholder="Введите наименование лота" value="<?=$value;?>" required>
-          <span class="form__error"><?=$alert;?></span>
+          <input id="lot-name" type="text" name="lot-name" placeholder="Введите наименование лота" value="<?=$cva['value'];?>">
+          <span class="form__error"><?=$cva['alert'];?></span>
         </div>
-        <?php $class_name = isset($errors['category']) ? "form__item--invalid" : "";
-        $value = isset($lot['category']) ? $lot['category'] : "";
-        $alert = isset($errors['category']) ? $errors['category'] : "";?>
-        <div class="form__item <?=$class_name;?>">
+        <?php $cva = edit_class_value_alert($errors, $lot, 'category');?>
+        <div class="form__item <?=$cva['class_name'];?>">
           <label for="category">Категория</label>
-          <select id="category" name="category" required>
+          <select id="category" name="category">
             <option>Выберите категорию</option>
             <?php foreach($categories as $key => $val):?>
             <option value="<?=$val['id'];?>"><?=$val['name'];?></option>
             <?php endforeach;?>
           </select>
-          <span class="form__error"><?=$alert;?></span>
+          <span class="form__error"><?=$cva['alert'];?></span>
         </div>
       </div>
-      <?php $class_name = isset($errors['message']) ? "form__item--invalid" : "";
-      $value = isset($lot['message']) ? $lot['message'] : "";
-      $alert = isset($errors['message']) ? $errors['message'] : "";?>
-      <div class="form__item form__item--wide <?=$class_name;?>">
+      <?php $cva = edit_class_value_alert($errors, $lot, 'message');?>
+      <div class="form__item form__item--wide <?=$cva['class_name'];?>">
         <label for="message">Описание</label>
-        <textarea id="message" name="message" placeholder="Напишите описание лота" value="<?=$value;?>" required></textarea>
-        <span class="form__error"><?=$alert;?></span>
+        <textarea id="message" name="message" placeholder="Напишите описание лота" value="<?=$cva['value'];?>"></textarea>
+        <span class="form__error"><?=$cva['alert'];?></span>
       </div>
       <?php $class_name = isset($errors['lot_img']) ? "form__item--invalid" : "form__item--uploaded";
       $img_preview = isset($lot['path']) ? $lot['path'] : "";?>
@@ -59,29 +53,23 @@
         </div>
       </div>
       <div class="form__container-three">
-        <?php $class_name = isset($errors['lot-rate']) ? "form__item--invalid" : "";
-        $value = isset($lot['lot-rate']) ? $lot['lot-rate'] : "";
-        $alert = isset($errors['lot-rate']) ? $errors['lot-rate'] : "";?>
-        <div class="form__item form__item--small <?=$class_name;?>">
+        <?php $cva = edit_class_value_alert($errors, $lot, 'lot-rate');?>
+        <div class="form__item form__item--small <?=$cva['class_name'];?>">
           <label for="lot-rate">Начальная цена</label>
-          <input id="lot-rate" type="number" name="lot-rate" placeholder="0" value="<?=$value;?>" required>
-          <span class="form__error"><?=$alert;?></span>
+          <input id="lot-rate" type="number" name="lot-rate" placeholder="0" value="<?=$cva['value'];?>">
+          <span class="form__error"><?=$cva['alert'];?></span>
         </div>
-        <?php $class_name = isset($errors['lot-step']) ? "form__item--invalid" : "";
-        $value = isset($lot['lot-step']) ? $lot['lot-step'] : "";
-        $alert = isset($errors['lot-step']) ? $errors['lot-step'] : "";?>
-        <div class="form__item form__item--small <?=$class_name;?>">
+        <?php $cva = edit_class_value_alert($errors, $lot, 'lot-step');?>
+        <div class="form__item form__item--small <?=$cva['class_name'];?>">
           <label for="lot-step">Шаг ставки</label>
-          <input id="lot-step" type="number" name="lot-step" placeholder="0" value="<?=$value;?>" required>
-          <span class="form__error"><?=$alert;?></span>
+          <input id="lot-step" type="number" name="lot-step" placeholder="0" value="<?=$cva['value'];?>">
+          <span class="form__error"><?=$cva['alert'];?></span>
         </div>
-        <?php $class_name = isset($errors['lot-date']) ? "form__item--invalid" : "";
-        $value = isset($lot['lot-date']) ? $lot['lot-date'] : "";
-        $alert = isset($errors['lot-date']) ? $errors['lot-date'] : "";?>
-        <div class="form__item <?=$class_name;?>">
+        <?php $cva = edit_class_value_alert($errors, $lot, 'lot-date');?>
+        <div class="form__item <?=$cva['class_name'];?>">
           <label for="lot-date">Дата окончания торгов</label>
-          <input class="form__input-date" id="lot-date" type="date" name="lot-date" value="<?=$value;?>" required>
-          <span class="form__error"><?=$alert;?></span>
+          <input class="form__input-date" id="lot-date" type="date" name="lot-date" value="<?=$cva['value'];?>">
+          <span class="form__error"><?=$cva['alert'];?></span>
         </div>
       </div>
       <span class="form__error form__error--bottom">Пожалуйста, исправьте ошибки в форме.</span>
