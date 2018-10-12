@@ -4,18 +4,18 @@
         <li class="nav__item">
         <a href="pages/all-lots.html"><?=$val['name'];?></a>
         </li>
-      <?php endforeach;?>
+        <?php endforeach;?>
       </ul>
     </nav>
     <section class="lot-item container">
-      <h2><?=$lot['title'];?></h2>
+      <h2><?=htmlspecialchars($lot['title']);?></h2>
       <div class="lot-item__content">
         <div class="lot-item__left">
           <div class="lot-item__image">
             <img src="../<?=$lot['img_link'];?>" width="730" height="548" alt="Сноуборд">
           </div>
           <p class="lot-item__category">Категория: <span><?=$lot['category'];?></span></p>
-          <p class="lot-item__description"><?=$lot['description'];?></p>
+          <p class="lot-item__description"><?=htmlspecialchars($lot['description']);?></p>
         </div>
 <!--  
         <div class="lot-item__right">
