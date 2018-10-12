@@ -8,7 +8,7 @@
       </ul>
     </nav>
     <?php $form_class = !empty($errors) ? "form--invalid" : "";?>
-    <form class="form form--add-lot container <?=$form_class;?>" action="add.php" method="post" enctype="multipart/form-data">
+    <form class="form form--add-lot container <?=$form_class;?>" action="../add.php" method="post" enctype="multipart/form-data">
       <h2>Добавление лота</h2>
       <div class="form__container-two">
         <?php $cva = edit_class_value_alert($errors, $lot, 'lot-name');?>
@@ -21,9 +21,10 @@
         <div class="form__item <?=$cva['class_name'];?>">
           <label for="category">Категория</label>
           <select id="category" name="category">
-            <option>Выберите категорию</option>
+            <option value="">Выберите категорию</option>
             <?php foreach($categories as $key => $val):?>
-            <option value="<?=$val['id'];?>"><?=$val['name'];?></option>
+			<?php $selected = isset($_POST['category']) && $_POST['category'] == $val['id'] ? "selected" : "";?>
+            <option value="<?=$val['id'];?>" <?=$selected;?>><?=$val['name'];?></option>
             <?php endforeach;?>
           </select>
           <span class="form__error"><?=$cva['alert'];?></span>
@@ -35,7 +36,7 @@
         <textarea id="message" name="message" placeholder="Напишите описание лота" value="<?=$cva['value'];?>"></textarea>
         <span class="form__error"><?=$cva['alert'];?></span>
       </div>
-      <?php $class_name = isset($errors['lot_img']) ? "form__item--invalid" : "form__item--uploaded";
+      <?php $class_name = isset($lot['path']) ? "form__item--uploaded" : "";
       $img_preview = isset($lot['path']) ? $lot['path'] : "";?>
       <div class="form__item form__item--file <?=$class_name;?>">
         <label>Изображение</label>

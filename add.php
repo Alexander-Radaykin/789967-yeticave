@@ -18,7 +18,7 @@ $res_get_cat = mysqli_query($con, $sql_get_cat);
   	}
 $categories = mysqli_fetch_all($res_get_cat, MYSQLI_ASSOC);
 $lot = [];
-$required = ['lot-name' => 'Укажите наименование', 'category' => 'Выберите категорию', 'message' => 'Введите описание', 'lot-rate' => 'Укажите начальную цену', 'lot-step' => 'Укажите шаг ставки', 'lot-date' => 'Укажите дату окончания торгов'];
+$required = ['lot-name' => 'Укажите наименование', 'message' => 'Введите описание', 'lot-rate' => 'Укажите начальную цену', 'lot-step' => 'Укажите шаг ставки', 'lot-date' => 'Укажите дату окончания торгов'];
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -29,6 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$errors[$key] = $value;
     	}
   	}
+	
+	if (!is_numeric($_POST['category'])) {
+		$errors['category'] = 'Выберите категорию';
+	}
   
   	$ts_day = strtotime("+1 day") - time();
   	$f_options = ['options' => ['min_range' => 1]];
@@ -50,9 +54,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$tmp_name = $_FILES['lot_img']['tmp_name'];
     	$path = $_FILES['lot_img']['name'];
     	$finfo = finfo_open(FILEINFO_MIME_TYPE);
+		if (!$finfo) {
+    		echo "Открытие базы данных fileinfo не удалось";
+    		exit();
+		}
     	$file_type = finfo_file($finfo, $tmp_name);
   
-    	if ($file_type !== "image/png" || $file_type !== "image/jpeg") {  $errors['lot_img'] = 'Загрузите изображение в формате JPEG или PNG';
+    	if ($file_type !== "image/png" && $file_type !== "image/jpeg") { 
+			$errors['lot_img'] = 'Загрузите изображение в формате JPEG или PNG';
     	}
     	else {
       	move_uploaded_file($tmp_name, 'img/' . $path);
