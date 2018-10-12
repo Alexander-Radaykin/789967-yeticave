@@ -33,7 +33,7 @@
       <?php $cva = edit_class_value_alert($errors, $lot, 'message');?>
       <div class="form__item form__item--wide <?=$cva['class_name'];?>">
         <label for="message">Описание</label>
-        <textarea id="message" name="message" placeholder="Напишите описание лота" value="<?=$cva['value'];?>"></textarea>
+        <textarea id="message" name="message" placeholder="Напишите описание лота"><?=$cva['value'];?></textarea>
         <span class="form__error"><?=$cva['alert'];?></span>
       </div>
       <?php $class_name = isset($lot['path']) ? "form__item--uploaded" : "";
