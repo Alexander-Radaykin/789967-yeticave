@@ -2,6 +2,8 @@
 date_default_timezone_set("Europe/Moscow");
 require_once('functions.php');
 
+$title = 'Добавление лота';
+
 $con = mysqli_connect('localhost', 'root', '', 'yeticave');
 	if(!$con) {
 		print("Ошибка подключения: " . mysqli_connect_error());
@@ -73,9 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   	}
     
   	if (count($errors)) {
-    	$add_main_content = include_template('add_main.php', compact('categories', 'errors', 'lot'));
-    	$add_lay_content = include_template('add_layout.php', compact('add_main_content', 'categories'));
-    	print ($add_lay_content);
+    	$content = include_template('add_main.php', compact('categories', 'errors', 'lot'));
+    	$layout = include_template('pages_layout.php', compact('title', 'content', 'categories'));
+    	print ($layout);
   	}
 	else {
     	$stmt = db_get_prepare_stmt($con, $sql_add_lot, [$lot['lot-name'], $lot['message'], $lot['path'], $lot['lot-rate'], $lot['lot-date'], $lot['lot-step'], $lot['category']]);
@@ -92,8 +94,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   	}
 }
 else {
-  	$add_main_content = include_template('add_main.php', compact('categories', 'errors', 'lot'));
-  	$add_lay_content = include_template('add_layout.php', compact('add_main_content', 'categories'));
+  	$content = include_template('add_main.php', compact('categories', 'errors', 'lot'));
+  	$layout = include_template('pages_layout.php', compact('title', 'content', 'categories'));
     
-  	print($add_lay_content);
+  	print($layout);
 }
