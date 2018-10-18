@@ -14,7 +14,7 @@
     <?php $cva = edit_class_value_alert($errors, $lot, 'lot-name');?>
     <div class="form__item <?=$cva['class_name'];?>">
       <label for="lot-name">Наименование</label>
-      <input id="lot-name" type="text" name="lot-name" placeholder="Введите наименование лота" value="<?=$cva['value'];?>">
+      <input id="lot-name" type="text" name="lot-name" placeholder="Введите наименование лота" value="<?=htmlspecialchars($cva['value']);?>">
       <span class="form__error"><?=$cva['alert'];?></span>
     </div>
     <?php $cva = edit_class_value_alert($errors, $lot, 'category');?>
@@ -33,7 +33,7 @@
   <?php $cva = edit_class_value_alert($errors, $lot, 'message');?>
   <div class="form__item form__item--wide <?=$cva['class_name'];?>">
     <label for="message">Описание</label>
-    <textarea id="message" name="message" placeholder="Напишите описание лота"><?=$cva['value'];?></textarea>
+    <textarea id="message" name="message" placeholder="Напишите описание лота"><?=htmlspecialchars($cva['value']);?></textarea>
     <span class="form__error"><?=$cva['alert'];?></span>
   </div>
   <?php $class_name = isset($lot['path']) ? "form__item--uploaded" : "";
@@ -57,19 +57,19 @@
     <?php $cva = edit_class_value_alert($errors, $lot, 'lot-rate');?>
     <div class="form__item form__item--small <?=$cva['class_name'];?>">
       <label for="lot-rate">Начальная цена</label>
-      <input id="lot-rate" type="number" name="lot-rate" placeholder="0" value="<?=$cva['value'];?>">
+      <input id="lot-rate" type="number" name="lot-rate" placeholder="0" value="<?=strip_tags($cva['value']);?>">
       <span class="form__error"><?=$cva['alert'];?></span>
     </div>
     <?php $cva = edit_class_value_alert($errors, $lot, 'lot-step');?>
     <div class="form__item form__item--small <?=$cva['class_name'];?>">
       <label for="lot-step">Шаг ставки</label>
-      <input id="lot-step" type="number" name="lot-step" placeholder="0" value="<?=$cva['value'];?>">
+      <input id="lot-step" type="number" name="lot-step" placeholder="0" value="<?=strip_tags($cva['value']);?>">
       <span class="form__error"><?=$cva['alert'];?></span>
     </div>
     <?php $cva = edit_class_value_alert($errors, $lot, 'lot-date');?>
     <div class="form__item <?=$cva['class_name'];?>">
       <label for="lot-date">Дата окончания торгов</label>
-      <input class="form__input-date" id="lot-date" type="date" name="lot-date" value="<?=$cva['value'];?>">
+      <input class="form__input-date" id="lot-date" type="date" name="lot-date" value="<?=strip_tags($cva['value']);?>">
       <span class="form__error"><?=$cva['alert'];?></span>
     </div>
   </div>
