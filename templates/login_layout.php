@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title><?=$lot['title'];?></title>
+  <title>Вход</title>
   <link href="css/normalize.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 </head>
@@ -35,7 +35,7 @@
   </header>
 
   <main>
-    <?=$lot_main_content;?>
+    <?=$login_main;?>
   </main>
 
 </div>
@@ -44,9 +44,9 @@
   <nav class="nav">
     <ul class="nav__list container">
     <?php foreach($categories as $key => $val):?>
-      <li class="nav__item">
-      	<a href="pages/all-lots.html"><?=$val['name'];?></a>
-      </li>
+	  <li class="nav__item">
+		<a href="pages/all-lots.html"><?=$val['name'];?></a>
+	  </li>
     <?php endforeach;?>
     </ul>
   </nav>
