@@ -12,7 +12,9 @@ mysqli_set_charset($con, "utf8");
 $sql_get_lots = "SELECT l.id, l.create_date, l.title, l.description, l.img_link, l.starting_price, l.end_date, l.bet_step, l.author_id, l.winner_id, l.category_id, c.name 'category'
 FROM lots l
 JOIN categories c ON l.category_id = c.id
-WHERE l.end_date > NOW()";
+WHERE l.end_date > DATE_ADD(NOW(), INTERVAL -1 DAY)
+ORDER BY l.id DESC
+LIMIT 6";
 $sql_get_cat = "SELECT name FROM categories";
 
 $res_get_lots = mysqli_query($con, $sql_get_lots);

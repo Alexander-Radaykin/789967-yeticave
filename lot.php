@@ -53,8 +53,10 @@ if (empty($lot)) {
 }
 $bets = mysqli_fetch_all($res_get_bets, MYSQLI_ASSOC);
 
+$title = $lot['title'];
 
-$lot_main_content = include_template('lot_main.php', compact('categories', 'lot', 'bets'));
-$lot_lay_content = include_template('lot_layout.php', compact('lot_main_content', 'categories', 'lot'));
+
+$content = include_template('lot_main.php', compact('categories', 'lot', 'bets'));
+$layout = include_template('pages_layout.php', compact('title', 'content', 'categories', 'lot'));
     
-print($lot_lay_content);
+print($layout);
