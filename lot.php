@@ -2,8 +2,16 @@
 date_default_timezone_set("Europe/Moscow");
 require_once('functions.php');
 
-if(isset($_GET['lot_id'])) {
+session_start();
+
+if (isset($_SESSION['user'])) {
+	$user_name = $_SESSION['user']['name'];
+	$user_avatar = $_SESSION['user']['avatar_link'] ? $_SESSION['user']['avatar_link'] : 'img/user.jpg';
+}
+
+if(isset($_GET['lot_id']) or isset($_SESSION['user'])) {
   	$lot_id = intval($_GET['lot_id']);
+	$_SESSION['cur_page'] = "/lot.php?lot_id=$lot_id";
 }
 else {
   	http_response_code(404);
@@ -57,6 +65,6 @@ $title = $lot['title'];
 
 
 $content = include_template('lot_main.php', compact('categories', 'lot', 'bets'));
-$layout = include_template('pages_layout.php', compact('title', 'content', 'categories', 'lot'));
+$layout = include_template('pages_layout.php', compact('title', 'user_name', 'user_avatar', 'content', 'categories', 'lot'));
     
 print($layout);

@@ -2,6 +2,18 @@
 date_default_timezone_set("Europe/Moscow");
 require_once('functions.php');
 
+session_start();
+
+if (isset($_SESSION['user'])) {
+	$user_name = $_SESSION['user']['name'];
+	$user_avatar = $_SESSION['user']['avatar_link'] ? $_SESSION['user']['avatar_link'] : 'img/user.jpg';
+}
+else {
+	$_SESSION['cur_page'] = "/add.php";
+	header ("Location: /login.php");
+	exit();
+}
+
 $title = 'Добавление лота';
 
 $con = mysqli_connect('localhost', 'root', '', 'yeticave');
@@ -76,8 +88,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
   	if (count($errors)) {
     	$content = include_template('add_main.php', compact('categories', 'errors', 'lot'));
-    	$layout = include_template('pages_layout.php', compact('title', 'content', 'categories'));
-    	print ($layout);
   	}
 	else {
 		$sql_add_lot = "INSERT INTO lots (create_date, title, description, img_link, starting_price, end_date, bet_step, author_id, category_id)
@@ -98,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 else {
   	$content = include_template('add_main.php', compact('categories', 'errors', 'lot'));
-  	$layout = include_template('pages_layout.php', compact('title', 'content', 'categories'));
-    
-  	print($layout);
 }
+
+$layout = include_template('pages_layout.php', compact('title', 'user_name', 'user_avatar', 'content', 'categories'));
+print($layout);

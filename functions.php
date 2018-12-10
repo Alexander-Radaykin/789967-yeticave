@@ -66,10 +66,10 @@ function db_get_prepare_stmt($link, $sql, $data = []) {
     return $stmt;
 }
 
-function edit_class_value_alert($errors, $lot, $field = '') {
+function edit_class_value_alert($errors, $form, $field = '') {
 	$res = [];
 	$res['class_name'] = isset($errors[$field]) ? " form__item--invalid" : "";
-	$res['value'] = isset($lot[$field]) ? $lot[$field] : "";
+	$res['value'] = isset($form[$field]) ? $form[$field] : "";
 	$res['alert'] = isset($errors[$field]) ? $errors[$field] : "";
   
 	return $res;

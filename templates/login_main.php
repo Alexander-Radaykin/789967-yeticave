@@ -7,17 +7,20 @@
   <?php endforeach;?>
   </ul>
 </nav>
-<form class="form container" action="https://echo.htmlacademy.ru" method="post"> <!-- form--invalid -->
+<?php $form_class = !empty($errors) ? " form--invalid" : "";?>
+<form class="form container<?=$form_class;?>" action="login.php" method="post">
   <h2>Вход</h2>
-  <div class="form__item"> <!-- form__item--invalid -->
+  <?php $cva = edit_class_value_alert($errors, $form, 'email');?>
+  <div class="form__item<?=$cva['class_name'];?>">
     <label for="email">E-mail*</label>
-    <input id="email" type="text" name="email" placeholder="Введите e-mail" required>
-    <span class="form__error">Введите e-mail</span>
+    <input id="email" type="text" name="email" placeholder="Введите e-mail" value="<?=htmlspecialchars($cva['value']);?>">
+    <span class="form__error"><?=$cva['alert'];?></span>
   </div>
-  <div class="form__item form__item--last">
+  <?php $cva = edit_class_value_alert($errors, $form, 'password');?>
+  <div class="form__item form__item--last<?=$cva['class_name'];?>">
     <label for="password">Пароль*</label>
-    <input id="password" type="text" name="password" placeholder="Введите пароль" required>
-    <span class="form__error">Введите пароль</span>
+    <input id="password" type="password" name="password" placeholder="Введите пароль">
+    <span class="form__error"><?=$cva['alert'];?></span>
   </div>
-  <button type="submit" class="button">Войти</button>
+  <button name="login" type="submit" class="button">Войти</button>
 </form>

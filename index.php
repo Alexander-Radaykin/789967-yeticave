@@ -3,6 +3,8 @@ date_default_timezone_set("Europe/Moscow");
 require_once('functions.php');
 require_once('data.php');
 
+session_start();
+
 $con = mysqli_connect('localhost', 'root', '', 'yeticave');
   	if(!$con) {
     	print("Ошибка подключения: " . mysqli_connect_error());
@@ -33,10 +35,11 @@ $cat = mysqli_fetch_all($res_get_cat, MYSQLI_ASSOC);
 $categories = array_combine($classes, $cat);
 
 $title = 'Главная';
-$is_auth = rand(0, 1);
 
-$user_name = 'Александр';
-$user_avatar = 'img/user.jpg';
+if (isset($_SESSION['user'])) {
+	$user_name = $_SESSION['user']['name'];
+	$user_avatar = $_SESSION['user']['avatar_link'] ? $_SESSION['user']['avatar_link'] : 'img/user.jpg';
+}
 
 $ts_midnight = strtotime('tomorrow');
 $qt_sec_to_midnight = $ts_midnight - time();
@@ -46,6 +49,6 @@ $minutes = floor(($qt_sec_to_midnight % 3600) / 60);
 $time_remaining = sprintf("%02d", $hours) . ' : ' . sprintf("%02d", $minutes);
 
 $content = include_template('index.php', compact('categories', 'lots', 'time_remaining'));
-$layout_content = include_template('layout.php', compact('content', 'categories', 'is_auth', 'title', 'user_name', 'user_avatar'));
+$layout_content = include_template('layout.php', compact('content', 'categories', 'user_name', 'user_avatar', 'title'));
 
 print($layout_content);

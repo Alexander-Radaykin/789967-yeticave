@@ -2,6 +2,8 @@
 date_default_timezone_set("Europe/Moscow");
 require_once('functions.php');
 
+session_start();
+
 $title = 'Регистрация';
 
 $con = mysqli_connect('localhost', 'root', '', 'yeticave');
@@ -74,8 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	if (count($errors)) {
     	$content = include_template('sign-up_main.php', compact('categories', 'errors', 'user'));
-    	$layout = include_template('pages_layout.php', compact('title', 'content', 'categories'));
-    	print ($layout);
   	}
 	else {		
 		$sql_add_user = "INSERT INTO users (reg_date, email, name, password, avatar_link, contacts)
@@ -95,6 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 else {
 	$content = include_template('sign-up_main.php', compact('categories', 'user', 'errors'));
-	$layout = include_template('pages_layout.php', compact('title', 'content', 'categories'));
-	print($layout);
 }
+
+$layout = include_template('pages_layout.php', compact('title', 'content', 'categories'));
+print($layout);
